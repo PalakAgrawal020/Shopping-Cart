@@ -4,7 +4,9 @@ import ProductCard from '../Common/ProductCard'
 function ShopPage() {
   return (
     <>
-      <ProductCard />
+      <div>
+        <ProductCard />
+      </div>
     </>
   )
 }

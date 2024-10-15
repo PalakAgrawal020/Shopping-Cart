@@ -13,12 +13,12 @@ function ProductCard() {
       .catch(error => console.log("Error fetching products : ", error))
   }, []);
   return (
-    <>
+    <div className='flex flex-wrap w-56'>
       {
         product.map(product => (
           <div key={product.id} className='bg-[#F4F5F7] mb-7'>
             <div className='relative'>
-              <img src={product.image} />
+              <img src={product.image} className='w-56'/>
               <div className='absolute top-0 right-0 p-2'>
                 <img src={tag} />
               </div>
@@ -32,7 +32,7 @@ function ProductCard() {
           </div>
         ))
       }
-    </>
+    </div>
   )
 }
 
