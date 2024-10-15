@@ -1,0 +1,32 @@
+import React from 'react'
+import logo from "../../assets/logo.svg"
+import cart from "../../assets/cart.svg"
+import wishlist from "../../assets/wishlist.svg"
+import { Link } from 'react-router-dom'
+function Header() {
+  return (
+      <>
+          <div className='h-16 flex justify-between p-5'>
+              <Link to="/">
+                  <div className='flex'>
+                    <img src={logo} className='w-9 h-9 pb-2'></img>
+                    <div className='font-bold font-Montserrat text-xl'>Furniro</div>
+                </div>
+              </Link>
+              
+              <div className='flex gap-14 font-semibold text-sm'>
+                  <Link to="">Home</Link>
+                  <Link to="shop">Shop</Link>
+                  <Link>About</Link>
+                  <Link>Contact</Link>
+              </div>
+              <div className='flex gap-6'>
+                  <Link><img src={wishlist} className='w-5'></img></Link>
+                  <Link to="cart"><img src={cart} className='w-5'></img></Link>
+              </div>
+          </div>
+      </>
+  )
+}
+
+export default Header
