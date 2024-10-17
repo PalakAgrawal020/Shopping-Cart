@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import home from "../../assets/home.svg"
 import dining from "../../assets/dining.svg"
 import living from "../../assets/living.svg"
@@ -16,6 +16,16 @@ import setup8 from "../../assets/setup/setup8.svg"
 import setup9 from "../../assets/setup/setup9.svg"
 
 function HomePage() {
+  const [product, setProduct] = useState([]);
+  const limitedProduct = product.slice(0,4);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+    .then(response => response.json())
+    .then(data => setProduct(data))
+    .catch(error => console.log("Error fetching data : ", error))
+  }, [])
+
   return (
     <>
       <div className='relative flex flex-col'>
@@ -50,11 +60,15 @@ function HomePage() {
 
       <div className='flex flex-col m-10'>
         <div className='font-bold text-3xl text-center pb-6'>Our Products</div>
-        <div className='flex gap-10 justify-center'>
-          <ProductCard />
+        <div className='flex gap-32 justify-center flex-wrap'>
+          {limitedProduct.map((product) => (
+            <ProductCard product={product} />
+          ))}
         </div>
-        <div className='flex gap-10 justify-center'>
-          <ProductCard />
+        <div className='flex gap-32 justify-center flex-wrap'>
+          {limitedProduct.map((product) => (
+            <ProductCard product={product}/>
+          ))}
         </div>
         <Link to="shop" className='flex justify-center'><button className='w-40 h-10 text-[#B88E2F] border-2'>Show More</button></Link>
       </div>
