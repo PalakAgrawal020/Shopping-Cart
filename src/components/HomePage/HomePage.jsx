@@ -14,16 +14,23 @@ import setup6 from "../../assets/setup/setup6.svg"
 import setup7 from "../../assets/setup/setup7.svg"
 import setup8 from "../../assets/setup/setup8.svg"
 import setup9 from "../../assets/setup/setup9.svg"
+import axiosInstance from '../../axios/axiosInstance.js'
 
 function HomePage() {
   const [product, setProduct] = useState([]);
   const limitedProduct = product.slice(0,4);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-    .then(response => response.json())
-    .then(data => setProduct(data))
-    .catch(error => console.log("Error fetching data : ", error))
+    const fetchdata = async () => {
+      try {
+        const response = await axiosInstance.get('/products');
+        setProduct(response.data);
+      } catch (error) {
+        console.log("Error fetching data : ", error);
+      }
+    }
+
+    fetchdata();
   }, [])
 
   return (

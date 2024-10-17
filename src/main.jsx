@@ -7,6 +7,7 @@ import ShopPage from './components/ShopPage/ShopPage.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Cart from './components/Cart/Cart.jsx'
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>

@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import ProductCard from '../Common/ProductCard'
+import axiosInstance from '../../axios/axiosInstance.js';
 
 function ShopPage() {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-    .then(response => response.json())
-    .then(data => setProduct(data))
-    .catch(error => console.log("Error fetching data : ", error))
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/products');
+        setProduct(response.data);
+      } catch (error) {
+        console.log("Error fetching data : ", error);
+      }
+    }
+
+    fetchData();
   }, [])
 
   return (
