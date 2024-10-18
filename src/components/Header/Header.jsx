@@ -21,7 +21,7 @@ function Header() {
                   <Link>Contact</Link>
               </div>
               <div className='flex gap-6'>
-                  <Link><img src={wishlist} className='w-5'></img></Link>
+                  <Link to="wishlist"><img src={wishlist} className='w-5'></img></Link>
                   <Link to="cart"><img src={cart} className='w-5'></img></Link>
               </div>
           </div>

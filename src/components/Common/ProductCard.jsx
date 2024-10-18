@@ -1,11 +1,17 @@
 import React from 'react';
 import tag from "../../assets/tag.svg"
+import { Link } from 'react-router-dom';
 
 function ProductCard({ product }) {
+
   return (
     <div className='flex flex-wrap w-56'>
-      <div key={product.id} className='bg-[#F4F5F7] mb-7'>
-        <div className='relative'>
+      <Link 
+        to={`/product/${product.id}`}
+        key={product.id} 
+        className='relative bg-[#F4F5F7] mb-7 group'
+      >
+        <div className='relative '>
           <img src={product.image} className='w-56' />
           <div className='absolute top-0 right-0 p-2'>
             <img src={tag} />
@@ -17,7 +23,7 @@ function ProductCard({ product }) {
           <div className='text-sm text-[#898989]'>{product.category}</div>
           <div className='text-md font-semibold'>{product.price}</div>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }
