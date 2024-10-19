@@ -1,16 +1,20 @@
 import React from 'react';
 import tag from "../../assets/tag.svg"
-import { Link } from 'react-router-dom';
+import { useWishlist } from '../../Context/WishlistContext';
+// import { Link } from 'react-router-dom';
+
 
 function ProductCard({ product }) {
 
+  const {addToWishlist} = useWishlist();
+
   return (
     <div className='flex flex-wrap w-56'>
-      <Link 
+      {/* <Link 
         to={`/product/${product.id}`}
         key={product.id} 
         className='relative bg-[#F4F5F7] mb-7 group'
-      >
+      > */}
         <div className='relative '>
           <img src={product.image} className='w-56' />
           <div className='absolute top-0 right-0 p-2'>
@@ -22,8 +26,12 @@ function ProductCard({ product }) {
           <div className='text-lg font-bold'>{product.title}</div>
           <div className='text-sm text-[#898989]'>{product.category}</div>
           <div className='text-md font-semibold'>{product.price}</div>
+          <button 
+            onClick={() => addToWishlist(product)}
+            className='border-2'
+          >Wishlist</button>
         </div>
-      </Link>
+      {/* </Link> */}
     </div>
   )
 }
