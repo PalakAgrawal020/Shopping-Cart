@@ -6,7 +6,17 @@ import { Link } from 'react-router-dom';
 
 function ProductCard({ product }) {
 
-  const { addToWishlist } = useWishlist();
+  const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
+
+  const isInWishlist = wishlist.some(item => item.id === product.id);
+
+  const handleClick = () => {
+    if(isInWishlist) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  }
 
   return (
     <div className='flex flex-wrap w-56 shadow-md mb-10'>
@@ -29,9 +39,9 @@ function ProductCard({ product }) {
             className='mr-10 bg-[#B88E2F] text-white p-2'
           >View Product</Link>
           <button
-            onClick={() => addToWishlist(product)}
+            onClick={handleClick}
             className='bg-[#B88E2F] text-white p-2 mt-3'
-          >Add to wishlist</button>
+          >{isInWishlist? "Remove from Wishlist" : "Add to wishlist"}</button>
         </div>
       </div>
     </div>
