@@ -16,8 +16,14 @@ export const WishlistProvider = ({ children }) => {
         localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     };
 
+    const removeFromWishlist = (itemId) => {
+        const updatedWishlist = wishlist.filter(item => item.id != itemId);
+        setWishlist(updatedWishlist);
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    }
+
     return (
-        <WishlistContext.Provider value={{wishlist, addToWishlist}}>
+        <WishlistContext.Provider value={{wishlist, addToWishlist, removeFromWishlist}}>
             {children}
         </WishlistContext.Provider>
     )
