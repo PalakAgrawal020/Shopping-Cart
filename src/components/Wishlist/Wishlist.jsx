@@ -1,9 +1,11 @@
 import React from 'react'
 import { useWishlist } from '../../Context/WishlistContext'
+import { useCart } from '../../Context/CartContext';
 
 function Wishlist() {
 
   const { wishlist, removeFromWishlist } = useWishlist();
+  const { addToCart } = useCart();
 
   return (
     <>
@@ -25,7 +27,10 @@ function Wishlist() {
                       className='mr-10 bg-[#B88E2F] text-white p-2 mb-2'
                       onClick={() => removeFromWishlist(product.id)}
                     >Delete</button>
-                    <button className='mr-10 bg-[#B88E2F] text-white p-2'>Add to cart</button>
+                    <button 
+                      className='mr-10 bg-[#B88E2F] text-white p-2'
+                      onClick={() => addToCart(product)}
+                    >Add to cart</button>
                   </div>
                 </div>
               </li>
