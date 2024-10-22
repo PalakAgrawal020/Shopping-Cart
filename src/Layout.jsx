@@ -8,13 +8,13 @@ import { CartProvider } from './Context/CartContext.jsx'
 function Layout() {
   return (
     <>
-      <WishlistProvider>
-        <CartProvider>
-          <Header />
-          <Outlet />
-          <Footer />
-        </CartProvider>
-      </WishlistProvider>
+        <WishlistProvider>
+          <CartProvider>
+            <Header />
+            <Outlet />
+            <Footer />
+          </CartProvider>
+        </WishlistProvider>
     </>
   )
 }

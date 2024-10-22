@@ -1,4 +1,4 @@
-import {createContext, useState, useContext} from "react";
+import { createContext, useState, useContext } from "react";
 
 const WishlistContext = createContext();
 
@@ -14,6 +14,7 @@ export const WishlistProvider = ({ children }) => {
         const updatedWishlist = [...wishlist, product];
         setWishlist(updatedWishlist);
         localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+        removeFromCart(product.id);
     };
 
     const removeFromWishlist = (itemId) => {
@@ -23,7 +24,7 @@ export const WishlistProvider = ({ children }) => {
     }
 
     return (
-        <WishlistContext.Provider value={{wishlist, addToWishlist, removeFromWishlist}}>
+        <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist }}>
             {children}
         </WishlistContext.Provider>
     )

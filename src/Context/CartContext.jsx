@@ -1,10 +1,14 @@
-import {createContext, useState, useContext} from "react";
+import { createContext, useState, useContext } from "react";
+import { useWishlist } from "./WishlistContext";
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
+
+    const { removeFromWishlist } = useWishlist();
+
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem("cart");
         if (savedCart) {
@@ -13,16 +17,17 @@ export const CartProvider = ({ children }) => {
                 return Array.isArray(parsedCart) ? parsedCart : [];
             } catch (error) {
                 console.error("Error parsing cart from localStorage", error);
-                return [];  
+                return [];
             }
         }
-        return [];  
+        return [];
     });
 
     const addToCart = (product) => {
         const updatedCart = [...cart, product];
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
+        removeFromWishlist(product.id);
     };
 
     const removeFromCart = (itemId) => {
@@ -32,7 +37,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart}}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     )
