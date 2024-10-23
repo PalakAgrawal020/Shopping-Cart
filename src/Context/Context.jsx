@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const context = createContext();
 
@@ -23,6 +23,32 @@ export const ContextProvider = ({children}) => {
         }
         return [];
     });
+
+    const [productCount, setProductCount] = useState({});
+
+    useEffect(() => {
+        const initialCount = { ...productCount }
+        cart.forEach(product => {
+            if(!initialCount[product.id]) {
+                initialCount[product.id] = 1;
+            }
+        });
+        setProductCount(initialCount);
+    }, [cart])
+
+    const increaseCount = (id) => {
+        setProductCount(prevCount => ({
+            ...prevCount,
+            [id] : prevCount[id] + 1
+        }));
+    };
+
+    const decreaseCount = (id) => {
+        setProductCount(prevCount => ({
+            ...prevCount,
+            [id] : prevCount[id] > 1 ? prevCount[id] - 1 : 1
+        }));
+    };
 
     const addToWishlist = (product) => {
         const updatedWishlist = [...wishlist, product];
@@ -51,7 +77,7 @@ export const ContextProvider = ({children}) => {
     }
 
     return (
-        <context.Provider value={{ wishlist, addToWishlist, removeFromWishlist, cart, addToCart, removeFromCart }}>
+        <context.Provider value={{ wishlist, addToWishlist, removeFromWishlist, cart, addToCart, removeFromCart, increaseCount, decreaseCount, productCount }}>
             {children}
         </context.Provider>
     )
