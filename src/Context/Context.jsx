@@ -1,13 +1,14 @@
 import { createContext, useState, useContext } from "react";
-import { useWishlist } from "./WishlistContext";
 
-const CartContext = createContext();
+const context = createContext();
 
-export const useCart = () => useContext(CartContext);
+export const useContextProvider = () => useContext(context);
 
-export const CartProvider = ({ children }) => {
-
-    const { removeFromWishlist } = useWishlist();
+export const ContextProvider = ({children}) => {
+    const [wishlist, setWishlist] = useState(() => {
+        const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        return savedWishlist;
+    })
 
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem("cart");
@@ -23,6 +24,19 @@ export const CartProvider = ({ children }) => {
         return [];
     });
 
+    const addToWishlist = (product) => {
+        const updatedWishlist = [...wishlist, product];
+        setWishlist(updatedWishlist);
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+        removeFromCart(product.id);
+    };
+
+    const removeFromWishlist = (itemId) => {
+        const updatedWishlist = wishlist.filter(item => item.id != itemId);
+        setWishlist(updatedWishlist);
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    }
+
     const addToCart = (product) => {
         const updatedCart = [...cart, product];
         setCart(updatedCart);
@@ -37,8 +51,8 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+        <context.Provider value={{ wishlist, addToWishlist, removeFromWishlist, cart, addToCart, removeFromCart }}>
             {children}
-        </CartContext.Provider>
+        </context.Provider>
     )
 }

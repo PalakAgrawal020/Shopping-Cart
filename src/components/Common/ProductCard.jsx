@@ -1,12 +1,12 @@
 import React from 'react';
 import tag from "../../assets/tag.svg"
-import { useWishlist } from '../../Context/WishlistContext';
 import { Link } from 'react-router-dom';
+import { useContextProvider } from '../../Context/Context';
 
 
 function ProductCard({ product }) {
 
-  const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
+  const { addToWishlist, removeFromWishlist, wishlist } = useContextProvider();
 
   const isInWishlist = wishlist.some(item => item.id === product.id);
 

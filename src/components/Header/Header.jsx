@@ -3,13 +3,11 @@ import logo from "../../assets/logo.svg"
 import cartImg from "../../assets/cart.svg"
 import wishlistImg from "../../assets/wishlist.svg"
 import { Link } from 'react-router-dom'
-import { useWishlist } from '../../Context/WishlistContext'
-import { useCart } from '../../Context/CartContext'
+import { useContextProvider } from '../../Context/Context'
 
 function Header() {
 
-    const { wishlist } = useWishlist();
-    const { cart } = useCart();
+    const { wishlist, cart } = useContextProvider();
 
     return (
         <>

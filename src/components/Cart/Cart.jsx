@@ -1,11 +1,9 @@
 import React from 'react'
-import { useCart } from '../../Context/CartContext';
-import { useWishlist } from '../../Context/WishlistContext';
+import { useContextProvider } from '../../Context/Context';
 
 function Cart() {
 
-    const { cart, removeFromCart } = useCart();
-    const { addToWishlist } = useWishlist();
+    const { cart, removeFromCart, addToWishlist } = useContextProvider();
 
     return (
         <>
