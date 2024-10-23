@@ -7,7 +7,7 @@ import ShopPage from './components/ShopPage/ShopPage.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Cart from './components/Cart/Cart.jsx'
 import ProductPage from './components/ProductPage/ProductPage.jsx'
-import Wishlist from './components/wishlist/Wishlist.jsx'
+import Wishlist from './components/Wishlist/Wishlist.jsx'
 
 
 const router = createBrowserRouter(
