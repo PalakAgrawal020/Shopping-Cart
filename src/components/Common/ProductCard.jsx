@@ -6,15 +6,24 @@ import { useContextProvider } from '../../Context/Context';
 
 function ProductCard({ product }) {
 
-  const { addToWishlist, removeFromWishlist, wishlist } = useContextProvider();
+  const { addToWishlist, removeFromWishlist, wishlist, addToCart, cart, removeFromCart } = useContextProvider();
 
   const isInWishlist = wishlist.some(item => item.id === product.id);
+  const isInCart = cart.some(item => item.id === product.id);
 
   const handleClick = () => {
     if(isInWishlist) {
       removeFromWishlist(product.id);
     } else {
       addToWishlist(product);
+    }
+  }
+
+  const handleCartClick = () => {
+    if(isInCart) {
+      removeFromCart(product.id);
+    } else {
+      addToCart(product);
     }
   }
 
@@ -37,11 +46,21 @@ function ProductCard({ product }) {
           <Link
             to={`/product/${product.id}`}
             className='mr-10 bg-[#B88E2F] text-white p-2'
-          >View Product</Link>
+          >
+            View Product
+          </Link>
           <button
             onClick={handleClick}
             className='bg-[#B88E2F] text-white p-2 mt-3'
-          >{isInWishlist? "Remove from Wishlist" : "Add to wishlist"}</button>
+          >
+            {isInWishlist? "Remove from Wishlist" : "Add to wishlist"}
+          </button>
+          <button
+            onClick={handleCartClick}
+            className='bg-[#B88E2F] text-white p-2 mt-3'
+          >
+            {isInCart? "Remove from Cart" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>
