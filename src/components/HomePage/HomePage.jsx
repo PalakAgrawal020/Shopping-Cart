@@ -3,7 +3,7 @@ import home from "../../assets/home.svg"
 import dining from "../../assets/dining.svg"
 import living from "../../assets/living.svg"
 import bedroom from "../../assets/bedroom.svg"
-import ProductCard from '../Common/ProductCard'
+import ProductCard from '../Common/ProductCard.jsx'
 import { Link } from 'react-router-dom'
 import setup1 from "../../assets/setup/setup1.svg"
 import setup2 from "../../assets/setup/setup2.svg"

@@ -1,7 +1,7 @@
 import React from 'react';
 import tag from "../../assets/tag.svg"
 import { Link } from 'react-router-dom';
-import { useContextProvider } from '../../Context/Context';
+import { useContextProvider } from '../../Context/Context.jsx';
 
 
 function ProductCard({ product }) {

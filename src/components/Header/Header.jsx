@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg"
 import cartImg from "../../assets/cart.svg"
 import wishlistImg from "../../assets/wishlist.svg"
 import { Link } from 'react-router-dom'
-import { useContextProvider } from '../../Context/Context'
+import { useContextProvider } from '../../Context/Context.jsx'
 
 function Header() {
 

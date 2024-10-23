@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ProductCard from '../Common/ProductCard'
+import ProductCard from '../Common/ProductCard.jsx'
 import axiosInstance from '../../axios/axiosInstance.js';
 
 function ShopPage() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useContextProvider } from '../../Context/Context';
+import { useContextProvider } from '../../Context/Context.jsx';
 
 function Wishlist() {
 
