@@ -8,11 +8,15 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Cart from './components/Cart/Cart.jsx'
 import ProductPage from './components/ProductPage/ProductPage.jsx'
 import Wishlist from './components/Wishlist/Wishlist.jsx'
+import Login from './components/Login/Login.jsx'
+import Signup from './components/Signup/Signup.jsx'
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path='/login' element={<Login />}></Route>
+      <Route path='/signup' element={<Signup />}></Route>
       <Route path="/" element={<Layout />}>
         <Route path="" element={<HomePage />}></Route>
         <Route path="shop" element={<ShopPage />}></Route>
